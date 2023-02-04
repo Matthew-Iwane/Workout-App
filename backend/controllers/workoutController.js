@@ -59,8 +59,14 @@ const updateWorkout = async (req, res) => {
     }
 
     const workout = await Workout.findOneAndUpdate({_id: id}, {
-        req.body
+        ...req.body
     })
+    
+    if (!workout) {
+        return res.status(400).json({error: "Workout not found!"});
+    } 
+
+    res.status(200).json(workout);
 }
 
 module.exports = {
