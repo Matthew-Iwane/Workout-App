@@ -1,9 +1,19 @@
 import { RiDeleteBin6Line } from 'react-icons/ri'
+import { useWorkoutsContext } from '../hooks/useWorkoutsContext'
 
 export const WorkOutDetails = ({workout}) => {
+  const { dispatch } = useWorkoutsContext();
 
-  const handleClick = () => {
+  const handleClick = async () => {
+    const response = await fetch('/api/workouts/' + workout._id, {
+      method: 'DELETE'
+    })
 
+    const json = await response.json();
+
+    if (response.ok) {
+      dispatch({type: 'DELETE_WORKOUT', payload: json});
+    }
   }
 
   return (
@@ -15,7 +25,7 @@ export const WorkOutDetails = ({workout}) => {
             <p className= 'font-thin'>{workout.createdAt}</p>
         </div>
         <div 
-          className='mr-10'
+          className='mr-10 cursor-pointer hover:scale-125 duration-300'
           onClick={handleClick}
         >
           <RiDeleteBin6Line size={30}/>

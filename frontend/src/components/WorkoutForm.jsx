@@ -68,7 +68,7 @@ export const WorkoutForm = () => {
                         onChange={(e) => setReps(e.target.value)}
                         value={reps}
                     />
-                    <button className='shadow-md rounded py-2 ext-white font-semibold bg-blue-400 text-white'>
+                    <button className='shadow-md rounded py-2 ext-white font-semibold bg-blue-400 hover:bg-blue-600 duration-200 text-white'>
                         Add Workout
                     </button>
 
