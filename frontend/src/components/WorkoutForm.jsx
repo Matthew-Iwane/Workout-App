@@ -1,6 +1,8 @@
 import { useState } from 'react'
+import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
 
 export const WorkoutForm = () => {
+    const { dispatch } = useWorkoutsContext();
     const [title, setTitle] = useState('');
     const [load, setLoad] = useState('');
     const [reps, setReps] = useState('');
@@ -18,7 +20,7 @@ export const WorkoutForm = () => {
             }
         })
 
-        const json = await response.json;
+        const json = await response.json();
 
         if (!response.ok) {
             setError(json.error);
@@ -28,6 +30,8 @@ export const WorkoutForm = () => {
             setTitle('');
             setLoad('');
             setReps('');
+
+            dispatch({type: 'CREATE_WORKOUT', payload: json});
             console.log('New workout has been added');
         }
     }
@@ -41,33 +45,30 @@ export const WorkoutForm = () => {
                     className='flex flex-col gap-4 w-full'
                     onSubmit={handleSubmit}
                 >
-                    <label>Exercise Title: </label>
+                    <label><b>Exercise Name: </b></label>
                     <input 
-                        className='rounded shadow-sm py-1'
-                        name="title"
+                        className='rounded shadow-sm py-1 px-2'
                         type="text" 
                         onChange={(e) => setTitle(e.target.value)}
                         value={title}
                     />
                     
-                    <label>Exercise Weight Amount: </label>
+                    <label><b>Weight Amount: </b></label>
                     <input 
-                        className='rounded shadow-sm py-1'
-                        name="load"
-                        type="text" 
+                        className='rounded shadow-sm py-1 px-2'
+                        type="number" 
                         onChange={(e) => setLoad(e.target.value)}
                         value={load}
                     />
 
-                    <label>Number of reps: </label>
+                    <label><b>Number of reps: </b></label>
                     <input 
-                        className='rounded shadow-sm py-1'
-                        name="reps"
-                        type="text" 
+                        className='rounded shadow-sm py-1 px-2'
+                        type="number" 
                         onChange={(e) => setReps(e.target.value)}
                         value={reps}
                     />
-                    <button className='shadow-md rounded py-2 bg-red-400 text-white hover:bg-red-600 duration-150'>
+                    <button className='shadow-md rounded py-2 ext-white font-semibold bg-blue-400 text-white'>
                         Add Workout
                     </button>
 
