@@ -19,7 +19,7 @@ export const Home = () => {
       }
     }
     fetchWorkout()
-  },[])
+  },[dispatch])
 
   return (
     <div className='grid sm:grid-cols-2'>
