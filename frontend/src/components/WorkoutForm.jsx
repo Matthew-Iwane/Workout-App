@@ -7,6 +7,7 @@ export const WorkoutForm = () => {
     const [load, setLoad] = useState('');
     const [reps, setReps] = useState('');
     const [error, setError] = useState(null);
+    const [empty, setEmpty] = useState([]);
 
 
     const handleSubmit = async (e) => {
@@ -24,13 +25,14 @@ export const WorkoutForm = () => {
 
         if (!response.ok) {
             setError(json.error);
+            setEmpty(json.empty);
         }
         if (response.ok) {
             setError(null);
             setTitle('');
             setLoad('');
             setReps('');
-
+            setEmpty([]);
             dispatch({type: 'CREATE_WORKOUT', payload: json});
             console.log('New workout has been added');
         }
@@ -47,7 +49,7 @@ export const WorkoutForm = () => {
                 >
                     <label><b>Exercise Name: </b></label>
                     <input 
-                        className='rounded shadow-sm py-1 px-2'
+                        className= {empty.includes('title') ? 'border border-red-500 rounded shadow-sm py-1 px-2' : 'rounded shadow-sm py-1 px-2'}
                         type="text" 
                         onChange={(e) => setTitle(e.target.value)}
                         value={title}
@@ -55,7 +57,7 @@ export const WorkoutForm = () => {
                     
                     <label><b>Weight Amount: </b></label>
                     <input 
-                        className='rounded shadow-sm py-1 px-2'
+                        className= {empty.includes('load') ? 'border border-red-500 rounded shadow-sm py-1 px-2' : 'rounded shadow-sm py-1 px-2'}
                         type="number" 
                         onChange={(e) => setLoad(e.target.value)}
                         value={load}
@@ -63,7 +65,7 @@ export const WorkoutForm = () => {
 
                     <label><b>Number of reps: </b></label>
                     <input 
-                        className='rounded shadow-sm py-1 px-2'
+                        className= {empty.includes('reps') ? 'border border-red-500 rounded shadow-sm py-1 px-2' : 'rounded shadow-sm py-1 px-2'}
                         type="number" 
                         onChange={(e) => setReps(e.target.value)}
                         value={reps}
@@ -72,7 +74,7 @@ export const WorkoutForm = () => {
                         Add Workout
                     </button>
 
-                    {error && <div>{error} </div>}
+                    {error && <div className='text-red-600 text-lg'>{error} </div>}
                 </form>
             </div>
         </div>

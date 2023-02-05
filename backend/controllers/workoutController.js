@@ -1,9 +1,27 @@
 const Workout = require('../models/workoutModel');
 const mongoose = require('mongoose');
 
+
+
 // create a new workout
 const createWorkout = async (req, res) => {
     const {title, load, reps} = req.body;
+
+    let empty = []
+
+    if (!title) {
+        empty.push('title');
+    }
+    if (!load) {
+        empty.push('load');
+    }
+    if (!reps) {
+        empty.push('reps');
+    }
+    if (empty.length > 0) {
+        return res.status(400).json({error: 'Please fill in all the fields', empty});
+    }
+
 
     // adding document to db
     try {
