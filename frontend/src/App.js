@@ -5,7 +5,7 @@ import { NavBar } from './components/NavBar';
 
 function App() {
   return (
-    <div className='w-screen h-screen bg-gradient-to-b from-gray-100 to-gray-300'>
+    <div className='w-screen min-h-screen bg-gradient-to-b from-gray-100 to-gray-300'>
       <BrowserRouter>
         <NavBar />
         <div>
