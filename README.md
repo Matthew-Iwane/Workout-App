@@ -5,6 +5,8 @@
 - [Built With](#built-with)
 - [Contact](#contact)
 
+
+
 ## Overview
 <img width="1088" alt="Screen Shot 2023-02-05 at 12 47 15 PM" src="https://user-images.githubusercontent.com/78956743/216839158-b4c2a134-79e8-41db-902c-3b7755413dd6.png">
 
@@ -20,12 +22,15 @@
 - React
 - React-Icons
 - Node.js
-- Firebase
+- Postman
+
 
 
 ## Contact
 - [Linkedin](https://www.linkedin.com/in/matthew-iwane-0b65031b8/)
 - [Portofolio](https://matthewtiwane.web.app)
+
+
 
 ## Acknowledgements
 - [React Icons](https://react-icons.github.io/react-icons/)
